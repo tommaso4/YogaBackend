@@ -1,0 +1,50 @@
+package com.YogApp.app.service;
+
+import com.YogApp.app.Exception.NotFoundException;
+import com.YogApp.app.model.entites.User;
+import com.YogApp.app.model.request.UserReq;
+import com.YogApp.app.repository.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserSvc {
+    @Autowired
+    private UserRepo userRepo;
+
+    public List<User> findAllUsers() {
+        return userRepo.findAll();
+    }
+
+    public User findUserById(int id) throws NotFoundException {
+        return userRepo.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+    }
+
+    public User saveUser(UserReq userReq){
+        User user = new User();
+        user.setName(userReq.getName());
+        user.setSurname(userReq.getSurname());
+        user.setUsername(userReq.getUsername());
+        user.setEmail(userReq.getEmail());
+        user.setPassword(userReq.getPassword());
+        return userRepo.save(user);
+    }
+
+    public User upDateUser(int id, UserReq userReq) throws NotFoundException {
+        User user = findUserById(id);
+        user.setName(userReq.getName());
+        user.setSurname(userReq.getSurname());
+        user.setUsername(userReq.getUsername());
+        user.setEmail(userReq.getEmail());
+        user.setPassword(userReq.getPassword());
+        return userRepo.save(user);
+    }
+
+    public void deleteUser(int id) throws NotFoundException {
+        User user = findUserById(id);
+        userRepo.delete(user);
+    }
+
+}

@@ -16,4 +16,6 @@ public class User {
     private String username;
     private String email;
     private String password;
+
+    //List<Pose> poses = new ArrayList<Pose>();
 }
