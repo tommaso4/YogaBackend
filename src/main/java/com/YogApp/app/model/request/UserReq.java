@@ -1,6 +1,7 @@
 package com.YogApp.app.model.request;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -14,6 +15,7 @@ public class UserReq {
     @NotBlank(message = "username is required")
     private String username;
     @NotBlank(message = "email is required")
+    @Email(message = "Email format is invalid")
     private String email;
     @NotBlank(message = "password is required")
     private String password;
