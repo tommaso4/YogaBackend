@@ -40,8 +40,6 @@ public class UserSvc {
         user.setEmail(userReq.getEmail());
         user.setPassword(userReq.getPassword());
         return userRepo.save(user);
-
-
     }
 
     public void deleteUser(int id) throws NotFoundException {
