@@ -27,7 +27,12 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    List<Asana> poses = new ArrayList<Asana>();
+    @ManyToOne
+    @JoinTable(name = "user_asana",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "asana:id")
+    )
+    List<Asana> asana = new ArrayList<Asana>();
 
 
     @Override

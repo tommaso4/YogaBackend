@@ -1,9 +1,8 @@
 package com.YogApp.app.model.entites;
 
 import com.YogApp.app.model.enums.Drishtis;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -16,6 +15,7 @@ public class Asana {
     private Drishtis drishti;
     private String benefit;
 
+    @ManyToMany(mappedBy = "asana")
     private User user;
 
 }
