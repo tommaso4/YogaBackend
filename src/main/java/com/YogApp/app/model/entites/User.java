@@ -22,6 +22,8 @@ public class User implements UserDetails {
     private String username;
     private String email;
     private String password;
+    //List<Pose> poses = new ArrayList<Pose>();
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -48,5 +50,4 @@ public class User implements UserDetails {
         return UserDetails.super.isEnabled();
     }
 
-    //List<Pose> poses = new ArrayList<Pose>();
 }
