@@ -27,10 +27,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToOne
+    @ManyToMany
     @JoinTable(name = "user_asana",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "asana:id")
+            inverseJoinColumns = @JoinColumn(name = "asana_id")
     )
     List<Asana> asana = new ArrayList<Asana>();
 
