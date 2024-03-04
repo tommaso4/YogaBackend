@@ -2,6 +2,7 @@ package com.YogApp.app.service;
 
 import com.YogApp.app.Exception.NotFoundException;
 import com.YogApp.app.model.entites.User;
+import com.YogApp.app.model.enums.Role;
 import com.YogApp.app.model.request.UserReq;
 import com.YogApp.app.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class UserSvc {
         user.setSurname(userReq.getSurname());
         user.setUsername(userReq.getUsername());
         user.setEmail(userReq.getEmail());
+        user.setRole(Role.ADMIN);
         user.setPassword(encoder.encode(userReq.getPassword()));
         return userRepo.save(user);
     }

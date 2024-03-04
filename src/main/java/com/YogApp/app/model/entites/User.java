@@ -1,11 +1,13 @@
 package com.YogApp.app.model.entites;
 
+import com.YogApp.app.model.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,12 +24,15 @@ public class User implements UserDetails {
     private String username;
     private String email;
     private String password;
-    //List<Pose> poses = new ArrayList<Pose>();
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    List<Asana> poses = new ArrayList<Asana>();
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(this.username));
+        return List.of(new SimpleGrantedAuthority(this.role.name()));
     }
 
     @Override
