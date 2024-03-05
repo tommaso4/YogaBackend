@@ -1,5 +1,6 @@
 package com.YogApp.app.security;
 
+import com.YogApp.app.model.enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +28,10 @@ public class SecurityChain {
         httpSecurity.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/auth/**").permitAll());
-//        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/worker/**").hasAuthority(Role.ADMIN.name()));
+        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/asana/create").hasAuthority(Role.ADMIN.name()));
+        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/asana/delete/**").hasAuthority(Role.ADMIN.name()));
+        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/user/addAsana/**").hasAuthority(Role.CLIENT.name()));
+        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("asana/getAll").permitAll());
         return httpSecurity.build();
     }
 

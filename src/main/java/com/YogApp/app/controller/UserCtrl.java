@@ -12,9 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserCtrl {
@@ -49,5 +47,11 @@ public class UserCtrl {
             return CustomResponse.success(HttpStatus.OK.toString(),token,HttpStatus.OK);
         }
         return CustomResponse.failure("Username/Password do not match",HttpStatus.NOT_FOUND);
+    }
+
+    @PatchMapping("/user/addAsana/{idAsana}/{idUser}")
+    public ResponseEntity<CustomResponse> addAsanaToUser(@PathVariable int idAsana,@PathVariable int idUser){
+        User user = this.userSvc.addAsanaToUser(idAsana,idUser);
+        return CustomResponse.success(HttpStatus.OK.toString(),user,HttpStatus.OK);
     }
 }

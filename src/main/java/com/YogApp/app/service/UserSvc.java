@@ -1,9 +1,11 @@
 package com.YogApp.app.service;
 
 import com.YogApp.app.Exception.NotFoundException;
+import com.YogApp.app.model.entites.Asana;
 import com.YogApp.app.model.entites.User;
 import com.YogApp.app.model.enums.Role;
 import com.YogApp.app.model.request.UserReq;
+import com.YogApp.app.repository.AsanaRepo;
 import com.YogApp.app.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +18,8 @@ import java.util.List;
 public class UserSvc {
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private AsanaRepo asanaRepo;
     @Autowired
     @Qualifier("BCript")
     private PasswordEncoder encoder;
@@ -56,5 +60,12 @@ public class UserSvc {
 
     public User findUserByUsername(String username) throws NotFoundException{
         return userRepo.findByUsername(username).orElseThrow(() -> new NotFoundException("Username/Password do not match"));
+    }
+
+    public User addAsanaToUser(int idAsana, int idUser){
+        User user = findUserById(idUser);
+        Asana asana = asanaRepo.findById(idAsana).orElseThrow(()->new NotFoundException("AsanaNotFound"));
+        user.getAsana().add(asana);
+        return userRepo.save(user);
     }
 }
