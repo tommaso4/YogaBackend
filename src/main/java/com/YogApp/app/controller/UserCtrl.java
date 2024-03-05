@@ -44,7 +44,6 @@ public class UserCtrl {
             return CustomResponse.failure(result.getAllErrors().toString(),HttpStatus.BAD_REQUEST);
         }
         User user = userSvc.findUserByUsername(loginReq.getUsername());
-        System.out.println(user.toString());
         if (encoder.matches(loginReq.getPassword(), user.getPassword())){
             String token = jwtTools.createToken(user);
             return CustomResponse.success(HttpStatus.OK.toString(),token,HttpStatus.OK);

@@ -34,7 +34,7 @@ public class UserSvc {
         user.setSurname(userReq.getSurname());
         user.setUsername(userReq.getUsername());
         user.setEmail(userReq.getEmail());
-        user.setRole(Role.ADMIN);
+        user.setRole(Role.CLIENT);
         user.setPassword(encoder.encode(userReq.getPassword()));
         return userRepo.save(user);
     }
