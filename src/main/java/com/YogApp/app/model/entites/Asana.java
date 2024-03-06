@@ -16,6 +16,7 @@ public class Asana {
     @Column(unique = true)
     private int id;
     private String name;
+    @Column(length = 1000)
     private String description;
     @Enumerated(EnumType.STRING)
     private Drishtis drishti;
