@@ -25,7 +25,7 @@ public class UserCtrl {
     @Autowired
     private JwtTools jwtTools;
 
-
+    //Request for client-side
     @PostMapping("/auth/register")
     public ResponseEntity<CustomResponse> register(@RequestBody @Validated UserReq userReq, BindingResult result){
         if (result.hasErrors()) {
@@ -52,6 +52,19 @@ public class UserCtrl {
     @PatchMapping("/user/addAsana/{idAsana}/{idUser}")
     public ResponseEntity<CustomResponse> addAsanaToUser(@PathVariable int idAsana,@PathVariable int idUser){
         User user = this.userSvc.addAsanaToUser(idAsana,idUser);
+        return CustomResponse.success(HttpStatus.OK.toString(),user,HttpStatus.OK);
+    }
+
+    //Request for testing
+    @GetMapping("/user/{id}")
+    public ResponseEntity<CustomResponse> findUserById(@PathVariable int id){
+        User user = userSvc.findUserById(id);
+        return CustomResponse.success(HttpStatus.OK.toString(),user, HttpStatus.OK);
+    }
+
+    @PatchMapping("/user/removeAsana/{idAsana}/{idUser}")
+    public ResponseEntity<CustomResponse> removeAsanaToUser(@PathVariable int idAsana, @PathVariable int idUser){
+        User user = this.userSvc.removeAsanaToUser(idAsana,idUser);
         return CustomResponse.success(HttpStatus.OK.toString(),user,HttpStatus.OK);
     }
 }

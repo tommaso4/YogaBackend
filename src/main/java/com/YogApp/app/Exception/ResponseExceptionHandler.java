@@ -20,4 +20,8 @@ public class ResponseExceptionHandler {
         return new ErrorResponse(e.getMessage());
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse runTimeException(RuntimeException e){ return  new ErrorResponse(e.getMessage());}
+
 }
