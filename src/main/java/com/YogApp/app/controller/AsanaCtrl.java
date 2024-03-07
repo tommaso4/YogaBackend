@@ -22,7 +22,8 @@ public class AsanaCtrl {
     @PostMapping("/asana/create")
     public ResponseEntity<CustomResponse> createAsana(@RequestBody @Validated AsanaReq asanaReq, BindingResult result){
         if (result.hasErrors()){
-            String err = result.getAllErrors().stream().map(e -> e.getDefaultMessage()).toList().toString();
+
+          String err = result.getAllErrors().stream().map(e -> e.getDefaultMessage()).toList().toString();
             return CustomResponse.failure(err, HttpStatus.BAD_REQUEST);
         }
         Asana asana = asanaSvc.createAsana(asanaReq);

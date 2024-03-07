@@ -23,6 +23,7 @@ public class JwtTools {
     public String createToken(User user){
         return Jwts.builder()
                 .claim("role", user.getRole())
+                .claim("username",user.getUsername())
                 .subject(user.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis()+Long.parseLong(expirationMs)))
