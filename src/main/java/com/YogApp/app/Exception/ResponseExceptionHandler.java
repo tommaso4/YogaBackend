@@ -23,5 +23,4 @@ public class ResponseExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse runTimeException(RuntimeException e){ return  new ErrorResponse(e.getMessage());}
-
 }

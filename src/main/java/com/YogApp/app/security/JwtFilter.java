@@ -30,11 +30,7 @@ public class JwtFilter extends OncePerRequestFilter {
         String authorization = request.getHeader("Authorization");
 
         if(authorization==null||!authorization.startsWith("Bearer ")){
-            try {
                 throw new UnAuthorizedException("Token non presente");
-            } catch (UnAuthorizedException e) {
-                throw new RuntimeException(e);
-            }
         }
 
         String token = authorization.substring(7);
@@ -42,7 +38,7 @@ public class JwtFilter extends OncePerRequestFilter {
         try {
             jwtTools.validateToken(token);
         } catch (UnAuthorizedException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
 
         String username = jwtTools.extractUsernameFromToken(token);
@@ -51,7 +47,7 @@ public class JwtFilter extends OncePerRequestFilter {
         try {
             utente = userSvc.findUserByUsername(username);
         } catch (NotFoundException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(utente,
