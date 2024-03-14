@@ -24,6 +24,7 @@ public class JwtTools {
         return Jwts.builder()
                 .claim("role", user.getRole())
                 .claim("username",user.getUsername())
+                .claim("idUser", user.getId())
                 .subject(user.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis()+Long.parseLong(expirationMs)))

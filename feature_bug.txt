@@ -1,9 +1,9 @@
 Bug:
--il jwt filter non intercetta l errore nel dofilter internal(exception handler, gestire exception)
 
 Feature:
--sidebar nome posizioni d-lg
--slider primaserie
--details-page
+-lista personale posizioni
+-slider primaserie.
 
 Idea:
+-sidebar nome posizioni d-lg.
+-creare envoirment endpoint
