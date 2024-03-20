@@ -36,11 +36,11 @@ public class AsanaCtrl {
         return CustomResponse.success(HttpStatus.OK.toString(),asanas,HttpStatus.OK);
     }
 
-//    @DeleteMapping("/asana/delete/{id}")
-//    public ResponseEntity<CustomResponse> deleteAsana (@PathVariable int id){
-//        asanaSvc.deleteAsana(id);
-//        return CustomResponse.emptyResponse("asana with id:"+id+"deleted",HttpStatus.OK);
-//    }
+    @DeleteMapping("/asana/delete/{id}")
+    public ResponseEntity<CustomResponse> deleteAsana (@PathVariable int id){
+        asanaSvc.deleteAsana(id);
+        return CustomResponse.emptyResponse("asana with id:"+id+"deleted",HttpStatus.OK);
+    }
 
     @GetMapping("/asana/getByType/{type}")
     public ResponseEntity<CustomResponse> findByType(@PathVariable TypeAsana type){

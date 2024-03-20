@@ -33,6 +33,7 @@ public class SecurityChain {
         httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/user/addAsana/**").hasAuthority(Role.CLIENT.name()));
         httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/user/removeAsana/**").hasAuthority(Role.CLIENT.name()));
         httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/user/{id}").permitAll());
+        httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("/user/delete/{id}").permitAll());
         httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("asana/getAll").permitAll());
         httpSecurity.authorizeHttpRequests(req-> req.requestMatchers("asana/getByType/{type}").permitAll());
         return httpSecurity.build();

@@ -67,4 +67,9 @@ public class UserCtrl {
         User user = this.userSvc.removeAsanaToUser(idAsana,idUser);
         return CustomResponse.success(HttpStatus.OK.toString(),user,HttpStatus.OK);
     }
+    @DeleteMapping("/user/delete/{idUser}")
+    public ResponseEntity<CustomResponse> deleteUser(@PathVariable int idUser){
+        this.userSvc.deleteUser(idUser);
+        return CustomResponse.emptyResponse("User whit id: "+ idUser+"success deleted",HttpStatus.OK);
+    }
 }

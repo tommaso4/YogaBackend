@@ -1,9 +1,15 @@
 Bug:
+-parvastasana mani a pace ha un problema
+-problema con img asana 23/24
+-closeMantra deleted
 
 Feature:
--lista personale posizioni
--slider primaserie.
+-guardRoute;
+-deleteUser
+-outoLogOut
+-ridefinire il tempo di durata del token
+-servise per metodoti generali(getHeader, is valid and touched)
 
 Idea:
--sidebar nome posizioni d-lg.
--creare envoirment endpoint
+-pop up dopo il login
+

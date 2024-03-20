@@ -54,6 +54,12 @@ public class UserSvc {
         return userRepo.save(user);
     }
 
+
+    public User refreshUser(int idUser){
+        User user = findUserById(idUser);
+        return userRepo.save(user);
+    }
+
     public void deleteUser(int id) throws NotFoundException {
         User user = findUserById(id);
         userRepo.delete(user);
@@ -76,7 +82,7 @@ public class UserSvc {
             user.getAsana().add(asanaToAdd);
             user = userRepo.save(user);
         }else {
-            throw new RuntimeException("Asana is already present in List");
+            throw new RuntimeException("Asana is already present in your List");
         }
         return user;
     }

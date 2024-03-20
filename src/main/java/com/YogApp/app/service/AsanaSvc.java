@@ -40,19 +40,17 @@ public class AsanaSvc {
     public Asana findById(int id){
         return this.asanaRepo.findById(id).orElseThrow(() -> new NotFoundException("Asana not found"));
     }
-    public void deleteAsana(int id){
-        Asana asana = findById(id);
+    public void deleteAsana(int idAsana){
+        Asana asana = findById(idAsana);
+        for (User user : asana.getUser()){
+            user.getAsana().remove(asana);
+            int idu = user.getId();
+            userSvc.refreshUser(idu);
+        }
         this.asanaRepo.delete(asana);
     }
     public List<Asana> findByTipe(TypeAsana typeAsana){
         List<Asana> asanas = new ArrayList<>();
-//        for (TypeAsana type : TypeAsana.values()){
-//            if (type.name().equals(typeAsana)){
-//
-//            }else{
-//                throw new RuntimeException("Type not valid!");
-//            }
-//        }
         asanas = asanaRepo.findBytypeAsana(typeAsana);
         return asanas;
     }
